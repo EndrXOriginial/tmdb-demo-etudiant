@@ -30,8 +30,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         afficheDerniersFilms(data) {
-            for (let i = 0; i < data.length; i++) {
-                console.log(data[i].title);
+            let section = document.querySelector(".liste-films");
+
+            for (let i = 0; i < this.totalFilm; i++) {
+                let article = document.querySelector(".template .film").cloneNode(true);
+                section.appendChild(article);
+
+                article.querySelector("h2").innerHTML = data[i].title;
+
+                // if (data[i].overview != "") {
+                // article.querySelector(".description").innerHTML = data[i].overview;
+                // } else {
+                //     article.querySelector(".description"). innerHTML = "Aucune description disponible";
+                // }
+                article.querySelector(".description").innerHTML = data[i].overview || "Aucune description disponible";
             }
         }
     }
